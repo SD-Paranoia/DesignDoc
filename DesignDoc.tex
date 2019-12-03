@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
-%Gummi|065|=)
-\title{\textbf{Key Exchange Outside of TCP/IP}\\ 
+
+\title{\textbf{Key Exchange Outside of TCP/IPasdfasdfasdf}\\ 
 {\normalsize Design Document} \\
 {\normalsize Group: SDMAY20-52}}
 \author{Client/Faculty Advisor: Julie Rursch\\
@@ -17,23 +17,109 @@
 
 \maketitle
 \newpage
-
+% The asterisks are necessary to keep these from being counted in ToC
 \section*{Executive Summary}
 
 \subsection*{Development Standards and Practices Used}
 \subsection*{Summary of Requirements}
+This project has fairly minimal hardware and software requirements necessary to produce our final product. The hardware requirements for this project consist of computers on which we will perform development work, a server that will host the backend infrastructure for our project, and several cell phones on which the application we develop can be deployed for testing purposes. The software requirements for the development of our project can be broken down into the integrated development environments (IDEs) necessary to build and deploy our application as well as the infrastructure software required for deploying and testing our backend code including a hypervisor and firewall. \\ \\
+The computers necessary for the development of our project will primarily consist of our own personal laptops and desktops, which will be largely be sufficient. However, we have found the need to source an additional Apple laptop/desktop of any kind, as there are numerous issues preventing the development of iOS applications on anything other than a computer running OSX. The server hardware necessary for hosting our project’s backend will also likely consist of our own server(s). While we initially approached the university to request a virtual private server or a world-routable IP address that could forward traffic to a server we would provide, we encountered difficulties that rendered pursuing the issue untenable. Instead, we will simply use our own servers which already have hypervisors installed that will make the deployment of a new virtual server very straightforward. Finally, between the members of the group, we have a selection of various iPhone and Android cell phones, which will allow testing across numerous platforms. \\ \\
+All of the software required for the development of this project is free and/or open source, eliminating software costs as a constraint on our project. The Android Studio and XCode IDEs will be used for the development and deployment of the phone applications, and team members will be free to utilize their own editors and workflows for the rest of the project.
+
 \subsection*{Applicable Courses from ISU Curriculum}
+We will draw from our experiences in the following courses throughout the completion of this project:\\
+\begin{itemize}
+	\item{Computer Science 309}
+	\begin{itemize}
+		\item{Software development best practices}
+		\begin{itemize}
+			\item{Version control using Git}
+			\item{Continuous integration using Git/Jenkins}
+			\item{Test driven development with unit testing}
+		\end{itemize}
+		\item{Android application development}
+		\begin{itemize}
+			\item{Use of Android Studio IDE}
+			\item{Integration of external Java libraries}
+		\end{itemize}
+		\item{Client/server communications}
+		\begin{itemize}
+			\item{Restful APIs}
+			\item{WebSockets}
+			\item{Client login and authentication}
+		\end{itemize}
+	\end{itemize}
+	
+	\item{Computer Engineering 308}
+	\begin{itemize}
+		\item{Low-level coding practices}
+		\begin{itemize}
+			\item{Multithreaded application development}
+			\item{Thread-safe programming}
+			\item{Understanding of Unix system calls}
+			\item{Network communications at low levels}
+		\end{itemize}
+	\end{itemize}
+	
+	\item{Computer Science 228}
+	\begin{itemize}
+		\item{Data Structures}
+		\begin{itemize}
+			\item{Storing messages, conversations, users efficiently}
+			\item{Ensure messages and conversations can be easily searched}
+			\item{Store key hashes efficiently}
+		\end{itemize}
+		\item{Algorithms}
+		\begin{itemize}
+			\item{Searching conversations/messages}
+			\item{Connecting users for conversations}
+			\item{Generating/sharing keys quickly}
+		\end{itemize}
+	\end{itemize}
+	
+	\item{Computer Engineering 234X}
+	\begin{itemize}
+		\item{Ethical Considerations}
+		\begin{itemize}
+			\item{Ensuring we have no access to user messages/keys}
+		\end{itemize}
+		\item{Legal Considerations}
+		\begin{itemize}
+			\item{Exporting cryptography suites internationally}
+			\item{Responses to law enforcement requests}
+		\end{itemize}
+	\end{itemize}
+	
+	\item{Computer Engineering 430/530}
+	\begin{itemize}
+		\item{Network protocols and security}
+		\begin{itemize}
+			\item{Network stacks}
+			\item{Protocol weaknesses and securities}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
 \subsection*{New Skills/Knowledge acquired that was not taught in courses}
+The two primary technologies that we will use that have not been taught in a class before are Golang and Flutter. Golang is an extremely versatile language developed by Google that will make up the majority of our backend code. We chose to use Golang for several reasons. First of all, it is very extensible and makes it very easy to implement open source libraries for cryptography and secure network communications that have been thoroughly audited to ensure efficient and secure performance. Second, Golang makes developing test suites in real time very straightforward, and it contains a number of useful utilities to ensure complete coverage of all code by the test suites. Finally, Golang can easily export executable builds of our project that can be run on nearly any architecture or operating system very easily.  \\ \\
+We will be using Flutter for the development of our client applications. Flutter is a Google project that allows mobile applications to be developed once in the Dart language and then built into native executables for both Android and iOS. We chose Flutter as it will ensure that all versions of our client application will feel and work similarly, and while we may need to do some manual tweaking for each platform, it will generally increase the efficiency of our development and ensure all features are consistent across both applications. \\ \\
 
 
 \newpage
 \tableofcontents
+\listoffigures
+\listoftables
 \newpage
 
 \section{Introduction}
 \subsection{Acknowledgement}
+We are grateful for the opportunity to work on a project envisioned, researched and designed by our group. As we are not professional engineers yet, it is a gift to be able to work with other students who have a similar desire to learn about and implement a topic that we share a passion for. Thank you to Iowa State University for allowing us to pursue this project and providing us the support necessary to complete the project. Thank you also to Dr. Rursch for her mentorship throughout this process. \\ \\
+
 \subsection{Problem and Project Statement}
+
 \subsection{Operation Environment}
+Our messaging app is intended to operate on any iOS or Android platform. This means that it could be used in any part of the world or any time of day, so we need to keep it uniform across all devices. The fact that it could be used in any part of the world means that the security of our app must be as strong as possible so that no one (from a single hacker sitting in a coffee shop to a hostile foreign government) is able to crack the encryption and read the messages that are being sent. In relation to time of day, we need to ensure that the app is up and running whenever a user wishes to send or receive a message. \\ \\
+
 \subsection{Requirements}
 \subsection{Intended Users and Uses}
 \subsection{Assumptions and Limitations}
@@ -41,7 +127,7 @@
 
 
 
-
+\newpage
 \section{Specifications and Analysis}
 \subsection{Proposed Design}
 \subsection{Design Analysis}
@@ -50,7 +136,7 @@
 
 
 
-
+\newpage
 \section{Statement of Work}
 \subsection{Previous Work and Literature}
 \subsection{Technology Considerations}
@@ -62,17 +148,35 @@
 
 
 
-
+\newpage
 \section{Project Timeline, Estimated Resources, and Challenges}
 \subsection{Project Timeline}
 \subsection{Feasibility Assessment}
 \subsection{Personnel Effort Requirements}
+	\begin{table}[h!]
+	\begin{center}
+		\caption{Task/Time Breakdown}
+		\label{tab:table1}
+		\begin{tabular}{c|c}
+		\textbf{Task} & \textbf{Time} \\
+		\hline
+		Requirements & 36 Hours \\
+		Specifications & 24 Hours \\
+		Prototyping & 80 hrs \\
+		Development & 180 hrs \\
+		Stabilization & 30 hrs \\
+		Final Release & 30 hrs \\
+
+		\end{tabular}
+	\end{center}
+	\end{table}
 \subsection{Other Resource Requirements}
+This project will require development and testing for our clients and servers. The iOS and Android clients will be tested on an iOS and an Android device respectively, and we have the devices necessary to develop and test our project. We have independently sourced a MacBook to assist in the building and deploying of the iOS client code. \\
 \subsection{Financial Requirements}
+As this entire project will be developed and completed with free and/or open source software run on hardware that is already owned by our group, we do not anticipate any financial costs at this time. Group members will use their own computers to develop the project, and we have borrowed a MacBook to assist in building and deploying iOS code. The project will be deployed on server hardware and phones owned by various group members. 
 
 
-
-
+\newpage
 \section{Testing and Implementation}
 \subsection{Interface Specification}
 \subsection{Hardware and Software}
@@ -83,7 +187,7 @@
 
 
 
-
+\newpage
 \section{Closing Material}
 \subsection{Conclusion}
 \subsection{References}
