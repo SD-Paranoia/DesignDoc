@@ -320,7 +320,7 @@ By March 1st, we will have all of the stated functionality for our app so that w
 \subsection{Project Tracking Procedures}
 We will utilize the Kanban boards that are built into GitHub to establish and track goals and progress. Andre has been elected to serve as a manager tasked with ensuring that we keep achieving goals at an acceptable pace. He will ensure that our metrics regarding percentages of tasks completed are reported back to Dr. Julie Rursch and that corrective actions are taken if necessary to ensure the prompt realignment of our team with our original goals. 
 \subsection{Expected Results and Validation}
-Our goal is to have a secure, user-friendly method of exchanging keys in a zero-trust environment, and then having a viable means of communicating with these keys, all with no trust in the internet infrastructure. To confirm that we have met these goals, we will perform extensive security testing of our platform. More details of these tests can be found in section 5 of this document, which outlines some of the tests necessary to ensure that our project goals have been achieved. These goals can be summarized as follows:
+Our goal is to have a secure, user-friendly method of exchanging keys in a zero-trust environment, and then having a viable means of communicating with these keys, all with no trust in the internet infrastructure. To confirm that we have met these goals, we will perform extensive security testing of our platform. More details of these tests can be found in Section 5 of this document, which outlines some of the tests necessary to ensure that our project goals have been achieved. These goals can be summarized as follows:
 \begin{enumerate}
 	\item{First and foremost, we will have functional cell phone applications for both the Android and iOS mobile operating systems. We will also have a very portable server application that can be deployed on a variety of operating systems. The client applications will be designed such that they require a form of authentication such as a passphrase before they can be unlocked, and all data stored on the client devices will be kept encrypted at rest and decrypted on the fly after the user has authenticated themselves.}
 	\item{Second, we will have two cell phones with our client application collaboratively generate and share a symmetric encryption key. This will occur with no transmissions over any network, including Wi-Fi, GSM, etc. The key will be generated with cryptographically secure sources of randomness, ensuring that not only can the key never be intercepted, but it can not be recreated by an adversary. This collaborative process will also be when the clients exchange their respective public key information for message signing and validation.}
@@ -384,7 +384,7 @@ For the server code, Go offers support for unit testing within the standard libr
 
 \subsection{Functional Testing}
 \subsubsection*{Unit-Based Testing}
-For testing our server-side code, we will create unit tests written in Go, taking advantage of the Go programming language’s built-in testing library. Unit tests will be created incrementally with the server-side code to ensure that our code doesn’t introduce vulnerabilities or bugs that would compromise the security or functionality of our application. To test the IOS and Android clients, we will be using Flutter unit tests.
+For testing our server-side code, we will create unit tests written in Go, taking advantage of the Go programming language’s built-in testing library. Unit tests will be created incrementally with the server-side code to ensure that our code doesn’t introduce vulnerabilities or bugs that would compromise the security or functionality of our application. To test the iOS and Android clients, we will be using Flutter unit tests.
 
 \subsubsection*{Integration Testing}
 Due to the relatively small size of this project, integration testing will come somewhat naturally as we continue to develop both the server and client software. Some automated tests will be used to ensure that client/server communication continues to work throughout development, i.e. ensure that APIs are not modified unexpectedly. Beyond these few tests, further integration tests are not specifically planned at this time, although they may be added if a need becomes obvious. 
@@ -406,7 +406,7 @@ In order to ensure the security of our platform, we will conduct periodic code r
 As soon as our project is in a semi-workable state, we will begin deploying development builds to our server and our personal cell phones. This will give us the opportunity to constantly use the application, finding bugs and noting usability issues in the process. Closer to the end of the development of the project, we will give access to the application to a group of friends and associates who have agreed to test our application and give us feedback on the interface, functionality, and other usability factors. 
 
 \subsubsection*{Compatibility Testing}
-As our project is not designed to communicate across platforms other than our own, there are very few points for compatibility issues to arise. We will perform testing with an Android emulator to ensure that our android application works across a variety of devices, and beyond that, strenuous compatibility testing will not be necessary. Due to the nature of iPhone development, our app will seamlessly work on any iOS phone platform. Our server code can easily be built and run for nearly any operating system on nearly any architecture, thanks to the versatility of the Go programming language, and specifically the power of the "GOOS" environment variable, which allows for effortless cross-compilation.
+As our project is not designed to communicate across platforms other than our own, there are very few points for compatibility issues to arise. We will perform testing with an Android emulator to ensure that our Android application works across a variety of devices, and beyond that, strenuous compatibility testing will not be necessary. Due to the nature of iPhone development, our app will seamlessly work on any iOS phone platform. Our server code can easily be built and run for nearly any operating system on nearly any architecture, thanks to the versatility of the Go programming language, and specifically the power of the "GOOS" environment variable, which allows for effortless cross-compilation.
 
 \subsection{Process}
 
@@ -416,7 +416,7 @@ As our project is not designed to communicate across platforms other than our ow
   \label{fig:flow_diag}
 \end{figure}
 
-For both the client and server program we have multiple CI setup tasks to be run whenever code is pushed or when pull requests are recreated. This has allowed us to quickly recognize whenever issues crop up in either of the code bases.  Ideally tests are run after every feature check by our team, but this has an automated and programmatic way of checking and ensuring this is the case.
+For both the client and server program we have multiple continuous integration setup tasks to be run whenever code is pushed or when pull requests are recreated. This has allowed us to quickly recognize whenever issues crop up in either of the code bases.  Ideally tests are run after every feature check by our team, but this has an automated and programmatic way of checking and ensuring this is the case.
 
 \subsection{Results}
 Once we started to write some of our server code we realized our original idea of keeping all keys outside of TCP/IP was not exactly what we were looking for. For users to prove their identity, we needed to store the public key of the user on the server and provide proof of their identity by signing their messages. This has led us to add symmetric encryption for the actual message content and use asymmetric encryption only for message signing and for delivering messages to the proper users. This method will still allow us to perform the key exchange outside of TCP/IP, with only the public keys of our users being transmitted across any networks. This was deemed acceptable because we do not serve as the central authority responsible for telling users that a person owns a key. This means that clients do not have to trust our server or the connection from their device to the server to know that their messages are reasonably safe.\\
@@ -430,7 +430,6 @@ Currently, we have been able to test key exchange and some server-side functions
 \newpage
 \section{Closing Material}
 \subsection{Conclusion}
-Summarize the work you have done so far.  Briefly reiterate your goals. Then, reiterate the best plan of action (or solution) to achieving your goals and indicate why this surpasses all other possible solutions tested. \\
 
 Our focus within the first semester of this project has been on the establishment of languages that we will use, the encryption standards we will use, and deciding how the client and server will pass information back and forth to each other. \\
 
@@ -438,7 +437,7 @@ For the languages, we have focused on Go and Flutter for their high portability 
 
 For encryption standards we chose to use PGP and AES. This decision was made because TLS, the modern encryption standard for network communications like the web traffic that our project uses for API communication, makes use of both PGP and AES at some point during its encryption progress. We expect system admins to use TLS when setting up servers for their own deployments of our application, but it is not required. \\
 
-Our client communicates with the server by making requests to RESTful APIs. These requests are simple JSON objects that contain the information needed by the server to make the request and nothing more. The main benefit from using a RESTful API is that the limited amount of information. \\
+Our client communicates with the server by making requests to RESTful APIs. These requests are simple JSON objects that contain the information needed by the server to make the request and nothing more. \\
 
 Our goal for next semester is to continue to build on our prototype by fleshing out our user experience, getting feedback and gathering user experience metrics. Our prototype is still fairly basic and going forward we will be adding message encryption and decryption using the keys we generated, creating actual chats to keep track of messages two users have sent to each other and developing a group chat functionality that will allow our to meet the standard users expect from a messaging application.
 
