@@ -431,7 +431,7 @@ Once we started to write some of our server code we realized our original idea o
 For our tests, we have been testing with valid RSA keys, for registering users and validating fingerprint ownership. The test data is sent to a local testing server that is spun up when tests start and spun down when they exit. This has allowed us to test JSON marshaling and unmarshalling as well as communication over HTTP.\\
 
 
-For the clients, we ran into issues with reading very large QR codes (1000 characters or more). With those tools, we have been able to read QR codes containing large public keys on Linux without issue. \\
+For the clients, we ran into issues with reading very large QR codes containing keys in the several hundred to thousand character range. Large QR codes, or QR codes containing characters such as spaces, symbols, or lower case letters sometimes scanned as an unexpected integer instead of the string it contained. After reading several documents on QR codes, and reading documents on the supporting libraries to our scanner, we discovered a way to improve this. By converting our keys to base32 first, our QR codes only contained capitalized letters and numbers. The number of issues on scanning these new codes reduced significantly after this.\\
 
 Originally, our testing plan involved distributing a beta version of our application to a large number of users at the Cyber Defense Competition here at Iowa State and to some of our friends for testing. However, due to the COVID-19 pandemic we were unable to be in person for any of this testing to take place, so we were not able to gather as much data on our application as we had hoped. \\
 
